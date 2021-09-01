@@ -1,5 +1,6 @@
 from util import time_it
 
+# Dynamic Programming using Memoization Approach
 
 # Fibonacci In Dynamic Programming
 # Since the Normal Recursive Call would have to take upto 2 X N recursive it is absolutely slow for Big Numbers
@@ -51,6 +52,28 @@ def canSum(targetsum,numlist,memo={}):
 	memo[targetsum] = False
 	return False
 
+# HowSum Problem !!!
+# Howsum Problem is same as CanSum problem only exception is that it returns the arrays that match upto the value instead of Boolean Values
+# Using Memo to decrease the redundant steps
+def howSum(targetsum,elements,memo={}):
+	if targetsum in memo:
+		return memo[targetsum]
+	if targetsum == 0:
+		return []
+	if targetsum < 0:
+		return None
+	for element in elements:
+		remainder = targetsum - element
+		result = howSum(remainder,elements,memo)
+		if result != None:
+			outputarray = result
+			outputarray.append(element)
+			memo[element] = outputarray
+			return memo[element]
+# 	If Not Found
+	memo[targetsum] = None
+	return None
+
 
 if __name__ == '__main__':
 	# Printing the Fibonacci Series
@@ -59,3 +82,5 @@ if __name__ == '__main__':
 	print(gridtraveller(18, 18))
 	# Printing the CanSum Problem
 	print(canSum(300, [7, 14]))
+	# Printing the HowSum Problem
+	print(howSum(300, [7, 3, 5]))
