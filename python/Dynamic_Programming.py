@@ -66,13 +66,37 @@ def howSum(targetsum,elements,memo={}):
 		remainder = targetsum - element
 		result = howSum(remainder,elements,memo)
 		if result != None:
-			outputarray = result
-			outputarray.append(element)
+			outputarray = [*result, element]  #Python * equivalent to JavaSscript ...
 			memo[element] = outputarray
 			return memo[element]
 # 	If Not Found
 	memo[targetsum] = None
 	return None
+
+# Best Sum Problem !!!
+# Same as the above CanSum and HowSum problem but the difference we return the shortest possible array
+# Using Memo to save some time
+def bestSum(targetsum, elements, memo={}):
+	if targetsum in memo:
+		return memo[targetsum]
+	if targetsum == 0:
+		return []
+	if targetsum < 0:
+		return None
+	# Defining the shortest solution which takes care of seeing the shortest possible solution
+	shortestsolution = None
+
+	for element in elements:
+		remainder = targetsum - element
+		result = bestSum(remainder,elements,memo)
+		if result != None:
+			outputarray = [*result, element]  #Python * equivalent to JavaSscript ...
+			if shortestsolution == None or len(outputarray) < len(shortestsolution):
+				shortestsolution = outputarray
+
+	memo[targetsum] = shortestsolution
+
+	return shortestsolution
 
 
 if __name__ == '__main__':
@@ -84,3 +108,5 @@ if __name__ == '__main__':
 	print(canSum(300, [7, 14]))
 	# Printing the HowSum Problem
 	print(howSum(300, [7, 3, 5]))
+	# Printing Best Sum Problem
+	print(bestSum(100, [10, 25, 20]))
