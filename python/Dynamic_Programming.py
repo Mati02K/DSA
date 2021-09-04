@@ -122,18 +122,16 @@ def canConstruct(targetword,wordBank,memo={}):
 
 if __name__ == '__main__':
 	# Printing the Fibonacci Series
-	# print(fib(100))
-	# # Printing the GridTraveller Problem
-	# print(gridtraveller(18, 18))
-	# # Printing the CanSum Problem
-	# print(canSum(300, [7, 14]))
-	# # Printing the HowSum Problem
-	# print(howSum(300, [7, 3, 5]))
-	# # Printing Best Sum Problem
-	# print(bestSum(100, [10, 25, 20]))
+	print(fib(100))
+	# Printing the GridTraveller Problem
+	print(gridtraveller(18, 18))
+	# Printing the CanSum Problem
+	print(canSum(300, [7, 14]))
+	# Printing the HowSum Problem
+	print(howSum(300, [7, 3, 5]))
+	# Printing Best Sum Problem
+	print(bestSum(100, [10, 25, 20]))
 	# Printing CanSum Problem
-	print(canConstruct("abcdef",["ab","abc","cd","def","abcd"]))
-	print(canConstruct("skateboard",['sk','skate','bo','rd','sja','teboard']))
 	print(canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",[
 		'e',
 		'ee',
