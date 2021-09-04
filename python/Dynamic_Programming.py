@@ -66,8 +66,7 @@ def howSum(targetsum,elements,memo={}):
 		remainder = targetsum - element
 		result = howSum(remainder,elements,memo)
 		if result != None:
-			outputarray = [*result, element]  #Python * equivalent to JavaSscript ...
-			memo[element] = outputarray
+			memo[element] = [*result, element] #Python * equivalent to JavaSscript ...
 			return memo[element]
 # 	If Not Found
 	memo[targetsum] = None
@@ -98,15 +97,49 @@ def bestSum(targetsum, elements, memo={}):
 
 	return shortestsolution
 
+#CanConstruct Problem !!!!
+# Checking if we can ever construct a string from a given array to match up with the word
+def canConstruct(targetword,wordBank,memo={}):
+	if targetword in memo:
+		return memo[targetword]
+	if targetword == '':
+		return True
+
+	for word in wordBank:
+		#  The find function performs in two ways
+		#  first it check if the exact matching substring is present in the word
+		#  Then returns the found match index of the first String of the substring word
+		# If nothing found returns -1
+		if targetword.find(word) == 0:
+			# slicing and checking only the remaining part of the string
+			suffix = targetword[len(word):]
+			if canConstruct(suffix, wordBank):
+				memo[targetword] = True
+				return True
+
+	memo[targetword] = False
+	return False
 
 if __name__ == '__main__':
 	# Printing the Fibonacci Series
-	print(fib(100))
-	# Printing the GridTraveller Problem
-	print(gridtraveller(18, 18))
-	# Printing the CanSum Problem
-	print(canSum(300, [7, 14]))
-	# Printing the HowSum Problem
-	print(howSum(300, [7, 3, 5]))
-	# Printing Best Sum Problem
-	print(bestSum(100, [10, 25, 20]))
+	# print(fib(100))
+	# # Printing the GridTraveller Problem
+	# print(gridtraveller(18, 18))
+	# # Printing the CanSum Problem
+	# print(canSum(300, [7, 14]))
+	# # Printing the HowSum Problem
+	# print(howSum(300, [7, 3, 5]))
+	# # Printing Best Sum Problem
+	# print(bestSum(100, [10, 25, 20]))
+	# Printing CanSum Problem
+	print(canConstruct("abcdef",["ab","abc","cd","def","abcd"]))
+	print(canConstruct("skateboard",['sk','skate','bo','rd','sja','teboard']))
+	print(canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",[
+		'e',
+		'ee',
+		'eee',
+		'eeee',
+		'eeee',
+		'eeeeee',
+		'eeeeeeeeeee'
+	]))
