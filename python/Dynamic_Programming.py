@@ -120,6 +120,43 @@ def canConstruct(targetword,wordBank,memo={}):
 	memo[targetword] = False
 	return False
 
+# How many construct problem
+# Here it is same as canconstruct problem the only difference is insteading of returning is it possible it should return the number of ways possible
+
+def howMany(targetword,wordBank, memo={}):
+	if targetword in memo:
+		return memo[targetword]
+	if targetword == '':
+		return 1
+
+	totalways = 0
+
+	for word in wordBank:
+		if targetword.find(word) == 0:
+			suffix = targetword[len(word):]
+			numways = howMany(suffix,wordBank,memo)
+			totalways += numways
+
+	memo[targetword] = totalways
+	return totalways
+
+# All Construct Problem
+# In this problem it is same as howmany and canconstruct but we return the pattern in 2-D Array
+def allConstruct(targetword,wordBank,memo={}):
+	if targetword in memo:
+		return memo[targetword]
+	if targetword == '':
+		return [[]]
+
+	result = []
+
+	for word in wordBank:
+		if targetword.find(word) == 0:
+			result += [[word] + x for x in allConstruct(targetword[len(word):], wordBank,memo)]
+
+	memo[targetword] = result
+	return result
+
 if __name__ == '__main__':
 	# Printing the Fibonacci Series
 	print(fib(100))
@@ -141,3 +178,7 @@ if __name__ == '__main__':
 		'eeeeee',
 		'eeeeeeeeeee'
 	]))
+	#  Printing the howmanyways sum
+	print(howMany('abcdef',['ab','cd','ef','abcd']))
+	# Printing All Construct Problem
+	print(allConstruct('purple',['purp','le','ur','p','purpl']))
