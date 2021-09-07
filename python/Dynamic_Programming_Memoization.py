@@ -157,6 +157,7 @@ def allConstruct(targetword,wordBank,memo={}):
 	memo[targetword] = result
 	return result
 
+
 # Driver Code
 if __name__ == '__main__':
 	# Printing the Fibonacci Series
@@ -183,3 +184,4 @@ if __name__ == '__main__':
 	print(howMany('abcdef',['ab','cd','ef','abcd']))
 	# Printing All Construct Problem
 	print(allConstruct('purple',['purp','le','ur','p','purpl']))
+

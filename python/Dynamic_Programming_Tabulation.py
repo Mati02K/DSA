@@ -94,6 +94,25 @@ def bestSum(targetsum,numbers):
 
 	return table[targetsum]
 
+# Maximum Sum of SubArray or Kadane's Algorithm
+# Given A array we have to find the maximum sum of subarray without changing any sequence
+def maxSubarray(numbers):
+# 	Initialize max as first element as we start from there
+	max = numbers[0]
+	currentmax = 0
+	for num in numbers:
+		#  Adding the subarray
+		currentmax = currentmax + num
+		# If the currentsub array  is maximum make it as max
+		if currentmax > max:
+			max = currentmax
+		# If the value falls below zero make it as zero
+		if currentmax < 0:
+			currentmax = 0
+	return max
+
+
+
 # Driver Code
 if __name__ == '__main__':
 	# Printing Fibonacci
@@ -106,3 +125,5 @@ if __name__ == '__main__':
 	print(howSum(25,[20,5,10]))
 	# Printing BestSum
 	print(bestSum(1000, [20, 5, 10, 25]))
+	# printing maxsubarry
+	print(maxSubarray([5,4,-1,7,8]))
