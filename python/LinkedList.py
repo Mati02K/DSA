@@ -114,13 +114,31 @@ class LinkedList:
                 itr.next=itr.next.next
                 break
             itr = itr.next
+
+    def reverseList(self):
+        if self.head == None:
+            print("Linked List is Empty")
+            return
+        prev = None
+        current = self.head
+        
+        while current is not None:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.head = prev
+        return
          
 if __name__ == '__main__':
     ll = LinkedList()
-    ll.insert_values(["banana","mango","grapes","orange"])
+    # ll.insert_values(["banana","mango","grapes","orange"])
+    ll.insert_values([1,2,3,4])
     ll.print()
+    ll.reverseList()
     ll.print()
-    ll.insert_after_value("mango","apple") # insert apple after mango
-    ll.print()
-    ll.remove_by_value("banana") # remove orange from linked list
-    ll.print()
+    # ll.print()
+    # ll.insert_after_value("mango","apple") # insert apple after mango
+    # ll.print()
+    # ll.remove_by_value("banana") # remove orange from linked list
+    # ll.print()
