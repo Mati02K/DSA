@@ -111,7 +111,43 @@ def maxSubarray(numbers):
 			currentmax = 0
 	return max
 
+# These problem work is bit complicated look into video for understanding
+def canConstruct(targetword,words):
+	table = [False] * (len(targetword) + 1)
+	table[0] = True
 
+	for i in range(len(targetword)+1):
+		if table[i] == True:
+			for word in words:
+				if targetword[i:(i+len(word))] == word:
+					table[i + len(word)] = True
+
+	return table[len(targetword)]
+
+def countConstruct(targetword,words):
+	table = [0] * (len(targetword) + 1)
+	table[0] = 1
+
+	for i in range(len(targetword) + 1):
+		for word in words:
+			if targetword[i:(i + len(word))] == word:
+				table[i + len(word)] += table[i]
+
+	return table[len(targetword)]
+
+def allConstruct(targetword,words):
+	#  Creating [] for all target.length spaces
+	table = [[] * (1) for i in range(len(targetword)+1)]
+	table[0] = [[]]
+
+	for i in range(len(table)):
+		for word in words:
+			if targetword[i:(i + len(word))] == word:
+				# newcombination = [*table[i], word]
+				newcombination =  table[i] + [word]
+				table[i+len(word)].append(newcombination)
+
+	return table[len(targetword)]
 
 # Driver Code
 if __name__ == '__main__':
@@ -127,3 +163,9 @@ if __name__ == '__main__':
 	print(bestSum(1000, [20, 5, 10, 25]))
 	# printing maxsubarry
 	print(maxSubarray([5,4,-1,7,8]))
+	# Printing CanConstruct
+	print(canConstruct("abcdef", ['a','ab','abcd','ef']))
+	# Printing CountConstruct
+	print(countConstruct("abcdef", ['a','ab','cd','abcd','ef','bcd']))
+	# Print all construct
+	print(allConstruct('purple',['purp','le','ur','p','purpl']))
