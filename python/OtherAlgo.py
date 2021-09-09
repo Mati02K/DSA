@@ -79,77 +79,12 @@ def fibonacci(n):
 			b = c
 		return b
 
-# Valid-Sudoku Problem
-#we have one 9x9 Sudoku board. We have to check whether that is valid or now. Only the filled cells need to be validated according to the following rules −
 
-#Each row must contain the digits from 1-9 without repetition.
-#Each column must contain the digits from 1-9 without repetition.
-#Each of the 9 (3x3) sub-boxes of the grid must contain the digits from 1-9 without repetition.
-
-def validsudoku(board):
-	#  Watch this video for better undestanding: https://www.youtube.com/watch?v=rJ9NFK9s_mI
-	seen = {}
-
-	for i in range(9):
-		for j in range(9):
-			if board[i][j] != ".":
-				keyrow = "Row" + str(i) + str(board[i][j])
-				keycol = "Col" + str(j) + str(board[i][j])
-				keybox = "Box" + str((i // 3) * 3 + (j // 3)) + str(board[i][j]) # For finding Subboxes condition
-				if keyrow not in seen and keycol not in seen and keybox not in seen:
-					seen[keyrow] = True
-					seen[keycol] = True
-					seen[keybox] = True
-				else:
-					return False
-	return True
-
-# Same Thing we are going to but Instead of checking we are going to solve the sudoku Problem
-def sudokuSolver(board):
-	for i in range(9):
-		for j in range(9):
-			if board[i][j] == ".":
-				for k in range(1,10):
-					if isValid(board, i, j, k):
-						board[i][j] = str(k)
-
-						if (sudokuSolver(board)):
-							return True #If it's the solution return true
-						else:
-							board[i][j] = '.' #Otherwise go back
-
-				return False
-
-	return True
-def isValid(board,row,col,key): # ----> Utility function to check if the correct based on the parameters for Sudoku Solver
-	for i in range(9):
-		# Checking if the number is present in any of the rows or columns or in the sub box
-		if board[i][col] != "." and board[i][col] == key:
-			return False
-		if board[row][i] != "." and board[row][i] == key:
-			return False
-		if (board[3 * (row // 3) + i // 3][ 3 * (col // 3) + i % 3] != '.' and board[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] == key):
-			return False
-
-		return True
 
 if __name__ == '__main__':
-    # print(findunitdigit(5692))
-    # print(countDigit(569))
-    # print(numConcat(906, 91))
-    # print(firstDigit(569))
-    # print(isPalindrome(1122))
+    print(findunitdigit(5692))
+    print(countDigit(569))
+    print(numConcat(906, 91))
+    print(firstDigit(569))
+    print(isPalindrome(1122))
 
-    x = [["5","3",".",".","7",".",".",".","."]
-,["6",".",".","1","9","5",".",".","."]
-,[".","9","8",".",".",".",".","6","."]
-,["8",".",".",".","6",".",".",".","3"]
-,["4",".",".","8",".","3",".",".","1"]
-,["7",".",".",".","2",".",".",".","6"]
-,[".","6",".",".",".",".","2","8","."]
-,[".",".",".","4","1","9",".",".","5"]
-,[".",".",".",".","8",".",".","7","9"]]
-
-    print(validsudoku(x))
-    sudokuSolver(x)
-    print(validsudoku(x))
