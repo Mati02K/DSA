@@ -4,8 +4,8 @@
 #Permutations Problem
 # Find the number of permutations possible for displaying the number in the list
 def permute(nums):
-	result = []
 
+	result = []
 	if (len(nums) == 1):
 		return [nums[:]]
 
@@ -21,6 +21,6 @@ def permute(nums):
 
 	return result
 
-
 if __name__ == '__main__':
     print(permute([1,2,3]))
+    # print(permute([1,1,2]))
