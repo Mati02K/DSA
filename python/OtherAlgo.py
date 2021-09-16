@@ -79,6 +79,29 @@ def fibonacci(n):
 			b = c
 		return b
 
+# Pascal's Traingle
+# Read More info abput pascals traingle here https://en.wikipedia.org/wiki/Pascal%27s_triangle
+def pascaltraingle(numRows):
+	triangle = []
+	if numRows == 0:
+		return triangle
+
+	first_row = [1]
+	triangle.append(first_row)
+
+	for i in range(1, numRows):
+		prevrow = triangle[i - 1]
+		row = []
+		row.append(1)
+		j = 1
+		while j < i:
+			value = prevrow[j - 1] + prevrow[j]
+			row.append(value)
+			j += 1
+		row.append(1)
+		triangle.append(row)
+
+	return triangle
 
 
 if __name__ == '__main__':
@@ -87,4 +110,4 @@ if __name__ == '__main__':
     print(numConcat(906, 91))
     print(firstDigit(569))
     print(isPalindrome(1122))
-
+    print(pascaltraingle(5))
