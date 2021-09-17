@@ -115,6 +115,7 @@ class LinkedList:
                 break
             itr = itr.next
 
+   # Reversing a Linked List
     def reverseList(self):
         if self.head == None:
             print("Linked List is Empty")
@@ -129,6 +130,17 @@ class LinkedList:
             current = next
         self.head = prev
         return
+
+    # Finding the middle element of the linked list
+    # we have two pointer, we move first by one and second by two so when second completes first will be at middle
+    def middleNode(self):
+        fast_pointer = slow_pointer = self.head
+
+        while fast_pointer and fast_pointer.next:
+            slow_pointer = slow_pointer.next
+            fast_pointer = fast_pointer.next.next
+
+        return slow_pointer.data
          
 if __name__ == '__main__':
     ll = LinkedList()
@@ -137,6 +149,7 @@ if __name__ == '__main__':
     ll.print()
     ll.reverseList()
     ll.print()
+    print(ll.middleNode())
     # ll.print()
     # ll.insert_after_value("mango","apple") # insert apple after mango
     # ll.print()
