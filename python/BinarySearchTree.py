@@ -1,3 +1,5 @@
+import collections
+
 class BinarySearchTreeNode:
     def __init__(self, data):
         self.data = data
@@ -141,6 +143,34 @@ def post_order_traversal_iterative(tree):
             stack.append(curr.right)
     return postorder[::-1]
 
+# Level order Traversal of a tree
+# This is a BFS Approach where we we return elements in pair of levels
+def level_Order_Traversal(root):
+    result = []
+    if not root:
+        return result
+    queue = collections.deque()
+    queue.append(root)
+
+    while queue:
+        qlen = len(queue)
+        level = []
+        for i in range(qlen):
+            node = queue.popleft()
+            if node:
+                level.append(node.data)
+                queue.append(node.left)
+                queue.append(node.right)
+        if level:
+            result.append(level)
+
+    return result
+
+#Maximum depth of a tree (DFS)
+def maxDepth(root):
+    if not root:
+        return 0
+    return 1 + max(maxDepth(root.left),maxDepth(root.right))
 
 def build_tree(elements):
     print("Building tree with these elements:",elements)
@@ -167,3 +197,5 @@ if __name__ == '__main__':
     print(pre_order_traversal_iterative(numbers_tree))
     print(in_order_traversal_iterative(numbers_tree))
     print(post_order_traversal_iterative(numbers_tree))
+    print(level_Order_Traversal(numbers_tree))
+    print(maxDepth(numbers_tree))
