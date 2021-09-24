@@ -36,6 +36,8 @@ if __name__ == '__main__':
     s.push(34)
     s.push(78)
     s.push(12)
+    print(s.peek())
+    print(s.pop())
     print(s.is_empty())
     print(s.reverse_string("We will conquere COVID-19"))
    

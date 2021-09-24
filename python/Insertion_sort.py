@@ -2,15 +2,16 @@ from util import time_it
 
 @time_it
 def insertion_sort(elements):
-    for i in range(1, len(elements)):
-        anchor = elements[i]
-        j = i - 1
-        while j>=0 and anchor < elements[j]:
-            elements[j+1] = elements[j]
-            j = j - 1
-        elements[j+1] = anchor
-
-
+    for i in range(len(elements)-1):
+        j = i + 1
+        while j > 0:
+            if elements[j-1] > elements[j]:
+                #Swap
+                elements[j-1],elements[j] = elements[j],elements[j-1]
+            else:
+                # Since the array is sorted just break to save some time
+                break
+            j-=1
 
 if __name__ == '__main__':
     elements = [11,9,29,7,2,15,28]

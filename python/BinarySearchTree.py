@@ -172,6 +172,17 @@ def maxDepth(root):
         return 0
     return 1 + max(maxDepth(root.left),maxDepth(root.right))
 
+#Inverting a Binary Tree
+def invertTree(root):
+    if not root:
+        return None
+    # Just assinging left to right and vice versa on all nodes
+    root.left, root.right = root.right, root.left
+    invertTree(root.left)
+    invertTree(root.right)
+    return root
+
+
 def build_tree(elements):
     print("Building tree with these elements:",elements)
     root = BinarySearchTreeNode(elements[0])
@@ -199,3 +210,5 @@ if __name__ == '__main__':
     print(post_order_traversal_iterative(numbers_tree))
     print(level_Order_Traversal(numbers_tree))
     print(maxDepth(numbers_tree))
+    inverted_tree = invertTree(numbers_tree)
+    print(level_Order_Traversal(inverted_tree))
