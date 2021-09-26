@@ -182,6 +182,19 @@ def invertTree(root):
     invertTree(root.right)
     return root
 
+# Program to check if a binary tree is valid
+def isValidBST(root):
+
+    def valid(root, leftrange, rightrange):
+        if not root:
+            return True
+        if not (root.data < rightrange and root.data > leftrange):
+            return False
+
+        return (valid(root.left, leftrange, root.data) and
+                valid(root.right, root.data, rightrange))
+    # Initial starting range from -infinity to +infinity
+    return valid(root, float("-inf"), float("inf"))
 
 def build_tree(elements):
     print("Building tree with these elements:",elements)
@@ -212,3 +225,4 @@ if __name__ == '__main__':
     print(maxDepth(numbers_tree))
     inverted_tree = invertTree(numbers_tree)
     print(level_Order_Traversal(inverted_tree))
+    print(isValidBST(numbers_tree))

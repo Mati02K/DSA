@@ -5,9 +5,9 @@ Some Basics of Bit Manipulation
  & --- > return 1 when both are 1
  or || ----> return 1 when either is one
  ^ ---> returns 1 when exactly either is one, but not both (0,1 or 1,0)
- a << b ---> adds b no of zeros to right
+ (Left Shift) a << b ---> adds b no of zeros to right
  a << b = a * 2^b
- a >> b ----> removes b times digits from the left
+(Right Shift) a >> b ----> removes b times digits from the left
  a >> b = a / 2^b
  a & 1 ---> return LSB (Least Significant Bit) or last bit
 '''
@@ -78,6 +78,17 @@ def xorRange(a):
 		return a + 1
 	return 0
 
+# Reverse Bits of a given number. For ex Input -> 8 -> 00000000000000000000000000001000 output --->    268435456 (00010000000000000000000000000000)
+def reverseBits(n):
+	res = 0
+	# Bcoz 32 bits is the max
+	for i in range(32):
+		bit = (n >> i) & 1
+		res = res | (bit << (31 - i))
+
+	return res
+
+
 if __name__ == '__main__':
 	print(oddoreven(21))
 	print(findUnique([2,3,3,4,2,6,4]))
@@ -86,3 +97,4 @@ if __name__ == '__main__':
 	print(poweroftwo(32))
 	print(findsetbits(7))
 	print(xorRange(9) ^ xorRange(2)) # ---> this is the XOR Range from 3 to 9
+	print(reverseBits(8))
