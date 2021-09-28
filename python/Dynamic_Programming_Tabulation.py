@@ -149,6 +149,31 @@ def allConstruct(targetword,words):
 
 	return table[len(targetword)]
 
+# Minimum Cost Path
+# Given a array of dimension m x n write a program to traverse from top left to bottom right in minimum cost. (Only move in right and bottom)
+# Just add the first row and first column and then check down and right and apply the minimum
+# https://www.youtube.com/watch?v=lBRtnuxg-gU
+def minPathSum(grid):
+	row = len(grid)
+	col = len(grid[0])
+	board = grid
+	# First column
+	for c in range(1, col):
+		board[0][c] = board[0][c - 1] + grid[0][c]
+	# First Row
+	for r in range(1, row):
+		board[r][0] = board[r - 1][0] + grid[r][0]
+	# Rest of the rows and cols
+	for i in range(1, row):
+		for j in range(1, col):
+			down = board[i - 1][j] + grid[i][j]
+			side = board[i][j - 1] + grid[i][j]
+			board[i][j] = min(down, side)
+
+	return board[row - 1][col - 1]
+
+
+
 # Driver Code
 if __name__ == '__main__':
 	# Printing Fibonacci
@@ -169,3 +194,5 @@ if __name__ == '__main__':
 	print(countConstruct("abcdef", ['a','ab','cd','abcd','ef','bcd']))
 	# Print all construct
 	print(allConstruct('purple',['purp','le','ur','p','purpl']))
+	# Print Minsum
+	print(minPathSum([[1,3,1],[1,5,1],[4,2,1]]))
