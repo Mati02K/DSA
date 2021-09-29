@@ -103,6 +103,18 @@ def pascaltraingle(numRows):
 
 	return triangle
 
+# Pascal Traingle is the position where start and end elements are 1 and in between elements are sum of upper two arrays
+def pascaltriangle(rowIndex):
+	pascal = [[1] * i for i in range(1, rowIndex + 2)]
+	if rowIndex < 2:
+		return pascal[rowIndex]
+	for i in range(2, len(pascal)):
+		for j in range(1, len(pascal[i]) - 1):
+			formula = pascal[i - 1][j - 1] + pascal[i - 1][j]
+			pascal[i][j] = formula
+
+	return pascal
+
 
 if __name__ == '__main__':
     print(findunitdigit(5692))
