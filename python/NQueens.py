@@ -40,11 +40,12 @@ def nQueens(n):  # Here N states no of rows in the board of chess
 			cols.add(col)
 			positivediag.add(row + col)
 			negativediag.add(row - col)
-			board[row][col] = "Q"  # Placing a Queen in that postion
+			board[row][col] = "Q"  # Placing a Queen in that position
 
 			# Calling the backtracking function for next row
 			backtracking(row + 1)
 
+			# Since it is a Loop it will come here to check this solution
 			# If backtracking will not passed the first condition row == n, it will come here below
 			cols.remove(col)
 			positivediag.remove(row + col)

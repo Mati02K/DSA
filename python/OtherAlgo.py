@@ -115,6 +115,60 @@ def pascaltriangle(rowIndex):
 
 	return pascal
 
+# Program to find if a number is prime or composite
+# Prime --> Divisble by itself and 1 ; Composite ---> All other numbers
+
+def isPrimeorComp(no):
+	# We have to check from 2 ---> no - 1
+	if no == 1:
+		return "NEITHER PRIME OR COMPOSITE"
+	for i in range(2,no):
+		if no % i == 0:
+			return "COMPOSITE"
+
+	return "PRIME"
+
+# Optimized way of checking isPrime. We can check only Square root n times so that our iterations would be halved.
+def isPrime(n):
+	if n == 1:
+		return False
+	c = 2 # Start from 2
+	while c * c < n:
+		if n % c == 0:
+			return False
+		c+=1
+
+	return True
+
+#Sieve Of Erato ---> Optimal Solution to find Prime until a number
+def sieve(n):
+	prime = [False] * (n+1)
+	i = 2
+	while i * i <= n:
+		if not prime[i]:
+			j = i * 2
+			while j <= n:
+				prime[j] = True # Replacing True wherever Composite number is found
+				j+=i
+		i+=1
+
+	onlyprimearr = []
+	for k in range(2,n+1):
+		if not prime[k]:
+			onlyprimearr.append(k)
+
+	return onlyprimearr
+
+# GCD of two numbers
+def gcd(a,b):
+	if a == 0 :
+		return b
+
+	return gcd(b%a,a)
+
+#LCM Of Two Numbers
+def lcm(a,b):
+	return int((a * b) / gcd(a,b))
 
 if __name__ == '__main__':
     print(findunitdigit(5692))
@@ -123,3 +177,9 @@ if __name__ == '__main__':
     print(firstDigit(569))
     print(isPalindrome(1122))
     print(pascaltraingle(5))
+    print(isPrimeorComp(6))
+    print(isPrime(6))
+    print(sieve(5))
+    print(gcd(5,10))
+    print(lcm(5,10))
+

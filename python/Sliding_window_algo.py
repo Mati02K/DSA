@@ -24,7 +24,25 @@ def lengthoflargestsubstring(string):
 
 	return maximium
 
+# Maximum ones after modification
+def maxOnes(A, B):
+	currmax = 0
+	start = 0
+	zerocount = 0
+	for end in range(len(A)):
+		if A[end] == 0:
+			zerocount += 1
+
+		while zerocount > B:
+			if A[start] == 0:
+				zerocount -= 1
+			start += 1
+		currmax = max(currmax, end - start + 1)
+
+	return currmax
+
 if __name__ == '__main__':
 	print(lengthoflargestsubstring('MATHESH'))
+	print(maxOnes([1, 0, 0, 1, 1, 0, 1],1))
 
 
