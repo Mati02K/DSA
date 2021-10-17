@@ -41,8 +41,18 @@ def maxOnes(A, B):
 
 	return currmax
 
+# MAximum  average of an array within a range
+def findMaxAverage(nums, distance):
+	res = sums = sum(nums[:distance])
+	for i in range(distance, len(nums)):
+		sums += (nums[i] - nums[i - distance])
+		res = max(res, sums)
+	avg = res / distance
+	return avg
+
 if __name__ == '__main__':
 	print(lengthoflargestsubstring('MATHESH'))
 	print(maxOnes([1, 0, 0, 1, 1, 0, 1],1))
+	print(findMaxAverage([1, 12, -5, -6, 50, 3], 4))
 
 
