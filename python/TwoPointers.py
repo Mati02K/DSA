@@ -63,11 +63,30 @@ def threeSumClosest(arr,target):
 				end -= 1
 	return res
 
+# Floyd Tortoise-Hare Algo to find Duplicates in the Array from 1-N
+def findDuplicates(nums):
+	tortoise = nums[0]
+	hare = nums[0]
+	while True:
+		tortoise = nums[tortoise]
+		hare = nums[nums[hare]]
+		if tortoise == hare:
+			break
+
+	ptr1 = nums[0]
+	ptr2 = tortoise
+	while ptr1 != ptr2:
+		ptr1 = nums[ptr1]
+		ptr2 = nums[ptr2]
+
+	return ptr1
+
 if __name__ == '__main__':
 	print(reverseOnlyLetters("Qedo1ct-eeLg=ntse-T!"))
 	# print(threeSumClosest([ 2, 1, -9, -7, -8, 2, -8, 2, 3, -8 ],-1))
 	print(threeSum([1,4,7,9,11], 12))
 	print(threeSumClosest([0,1,2], 0))
 	print(threeSumClosest([1,4,7,9,11], 10))
+	print(findDuplicates([3,1,3,4,2]))
 
 
