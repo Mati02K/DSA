@@ -88,6 +88,17 @@ def reverseBits(n):
 
 	return res
 
+# Hamming Distance Problem , First XOR the the inputs and find the no of set bits(1) in the result
+def hammingDistance(x, y):
+	res = x ^ y
+	count = 0
+	for _ in range(32):
+		curr = res & 1
+		if curr == 1:
+			count += 1
+		res = res >> 1
+
+	return count
 
 if __name__ == '__main__':
 	print(oddoreven(21))
@@ -98,3 +109,4 @@ if __name__ == '__main__':
 	print(findsetbits(7))
 	print(xorRange(9) ^ xorRange(2)) # ---> this is the XOR Range from 3 to 9
 	print(reverseBits(8))
+	print(hammingDistance(1,4))
